@@ -1,6 +1,22 @@
 import {type ARIARole} from 'aria-query'
+import {type AllByBoundAttribute, type AllByRole, type AllByText} from '@testing-library/dom'
 
 declare namespace matchers {
+  interface DomQueryFunction {
+    (container: HTMLElement, ...args: any[]): HTMLElement[]
+  }
+
+  type DomQueryArgs<F extends DomQueryFunction = DomQueryFunction> = F extends (
+    container: HTMLElement,
+    ...args: infer A
+  ) => HTMLElement[]
+    ? A
+    : never
+
+  type DomQueryByBoundAttributeArgs = DomQueryArgs<AllByBoundAttribute>
+  type DomQueryByRoleArgs = DomQueryArgs<AllByRole>
+  type DomQueryByTextArgs = DomQueryArgs<AllByText>
+
   interface TestingLibraryMatchers<E, R> {
     /**
      * @deprecated
@@ -703,6 +719,86 @@ declare namespace matchers {
      * [testing-library/jest-dom#tohaveerrormessage](https://github.com/testing-library/jest-dom#tohaveerrormessage)
      */
     toHaveErrorMessage(text?: string | RegExp | E): R
+
+    /**
+     * Asserts whether one or more child elements are found with the specified alternate text.
+     */
+    toContainAnyByAltText(...args: DomQueryByBoundAttributeArgs): R
+
+    /**
+     * Asserts whether precisely one child element is found with the specified alternate text.
+     */
+    toContainOneByAltText(...args: DomQueryByBoundAttributeArgs): R
+
+    /**
+     * Asserts whether one or more child elements are found with the specified display value.
+     */
+    toContainAnyByDisplayValue(...args: DomQueryByBoundAttributeArgs): R
+
+    /**
+     * Asserts whether precisely one child element is found with the specified display value.
+     */
+    toContainOneByDisplayValue(...args: DomQueryByBoundAttributeArgs): R
+
+    /**
+     * Asserts whether one or more child elements are found with the specified label text.
+     */
+    toContainAnyByLabelText(...args: DomQueryByTextArgs): R
+
+    /**
+     * Asserts whether precisely one child element is found with the specified label text.
+     */
+    toContainOneByLabelText(...args: DomQueryByTextArgs): R
+
+    /**
+     * Asserts whether one or more child elements are found with the specified placeholder text.
+     */
+    toContainAnyByPlaceholderText(...args: DomQueryByBoundAttributeArgs): R
+
+    /**
+     * Asserts whether precisely one child element is found with the specified placeholder text.
+     */
+    toContainOneByPlaceholderText(...args: DomQueryByBoundAttributeArgs): R
+
+    /**
+     * Asserts whether one or more child elements are found with the specified role.
+     */
+    toContainAnyByRole(...args: DomQueryByRoleArgs): R
+
+    /**
+     * Asserts whether precisely one child element is found with the specified role.
+     */
+    toContainOneByRole(...args: DomQueryByRoleArgs): R
+
+    /**
+     * Asserts whether one or more child elements are found with the specified test ID.
+     */
+    toContainAnyByTestId(...args: DomQueryByBoundAttributeArgs): R
+
+    /**
+     * Asserts whether precisely one child element is found with the specified test ID.
+     */
+    toContainOneByTestId(...args: DomQueryByBoundAttributeArgs): R
+
+    /**
+     * Asserts whether one or more child elements are found with the specified text.
+     */
+    toContainAnyByText(...args: DomQueryByTextArgs): R
+
+    /**
+     * Asserts whether precisely one child element is found with the specified text.
+     */
+    toContainOneByText(...args: DomQueryByTextArgs): R
+
+    /**
+     * Asserts whether one or more child elements are found with the specified title.
+     */
+    toContainAnyByTitle(...args: DomQueryByBoundAttributeArgs): R
+
+    /**
+     * Asserts whether precisely one child element is found with the specified title.
+     */
+    toContainOneByTitle(...args: DomQueryByBoundAttributeArgs): R
   }
 }
 

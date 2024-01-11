@@ -1,3 +1,6 @@
+import {queries} from '@testing-library/dom'
+import createQueryMatchers from './create-query-matchers'
+
 export {toBeInTheDOM} from './to-be-in-the-dom'
 export {toBeInTheDocument} from './to-be-in-the-document'
 export {toBeEmpty} from './to-be-empty'
@@ -24,3 +27,28 @@ export {toBeChecked} from './to-be-checked'
 export {toBePartiallyChecked} from './to-be-partially-checked'
 export {toHaveDescription} from './to-have-description'
 export {toHaveErrorMessage} from './to-have-errormessage'
+
+export const [toContainAnyByAltText, toContainOneByAltText] =
+  createQueryMatchers('alt text', queries.queryAllByAltText)
+export const [toContainAnyByDisplayValue, toContainOneByDisplayValue] =
+  createQueryMatchers('display value', queries.queryAllByDisplayValue)
+export const [toContainAnyByLabelText, toContainOneByLabelText] =
+  createQueryMatchers('label text', queries.queryAllByLabelText)
+export const [toContainAnyByPlaceholderText, toContainOneByPlaceholderText] =
+  createQueryMatchers('placeholder text', queries.queryAllByPlaceholderText)
+export const [toContainAnyByRole, toContainOneByRole] = createQueryMatchers(
+  'role',
+  queries.queryAllByRole,
+)
+export const [toContainAnyByTestId, toContainOneByTestId] = createQueryMatchers(
+  'test ID',
+  queries.queryAllByTestId,
+)
+export const [toContainAnyByText, toContainOneByText] = createQueryMatchers(
+  'text',
+  queries.queryAllByText,
+)
+export const [toContainAnyByTitle, toContainOneByTitle] = createQueryMatchers(
+  'title',
+  queries.queryAllByTitle,
+)

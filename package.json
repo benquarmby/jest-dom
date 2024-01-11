@@ -91,6 +91,7 @@
   "devDependencies": {
     "@jest/globals": "^29.6.2",
     "@rollup/plugin-commonjs": "^25.0.4",
+    "@testing-library/dom": "^10.4.0",
     "@types/bun": "latest",
     "@types/web": "latest",
     "expect": "^29.6.2",
@@ -103,6 +104,9 @@
     "rollup-plugin-delete": "^2.0.0",
     "typescript": "^5.1.6",
     "vitest": "^0.34.1"
+  },
+  "peerDependencies": {
+    "@testing-library/dom": ">=8 <11"
   },
   "eslintConfig": {
     "extends": "./node_modules/kcd-scripts/eslint.js",
